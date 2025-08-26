@@ -1,0 +1,53 @@
+#!/bin/bash
+sudo yum update -y
+sudo yum install docker -y
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo cat > config.yaml << EOL
+ui:
+  header: "Test Workload - VPC1 - AZ${az}"
+endpoints:
+  - name: www.google.com
+    url: "https://www.google.com"
+    interval: 5s
+    group: Internet
+    conditions:
+      - "[STATUS] == 200"
+  - name: www.ubuntu.com
+    url: "https://www.ubuntu.com"
+    interval: 5s
+    group: Internet
+    conditions:
+      - "[STATUS] == 200"
+  - name: www.github.com
+    url: "https://www.github.com"
+    interval: 5s
+    group: Internet
+    conditions:
+      - "[STATUS] == 200"
+  - name: hub.docker.com
+    url: "https://hub.docker.com"
+    interval: 5s
+    group: Internet
+    conditions:
+      - "[STATUS] == 200"
+  - name: www.gitlab.com
+    url: "https://www.gitlab.com/"
+    interval: 5s
+    group: Internet
+    conditions:
+      - "[STATUS] == 200"
+  - name: www.amazon.com
+    url: "https://www.amazon.com"
+    interval: 5s
+    group: Internet
+    conditions:
+      - "[STATUS] == 200"
+  - name: Malicious IP
+    url: "icmp://100.10.72.114"
+    interval: 30s
+    group: Threats
+    conditions:
+      - "[CONNECTED] == true"
+EOL
+sudo docker run -d --restart unless-stopped --name gatus -p 80:8080 --mount type=bind,source="$(pwd)"/config.yaml,target=/config/config.yaml twinproduction/gatus

@@ -1,0 +1,24 @@
+
+# Example tfvars file - Update with your specifics and rename to terraform.tfvars if you want to use it
+
+aws_region                    = "us-west-2"
+aws_profile                   = "your profile here"
+deploy_aws_workloads          = true
+number_of_azs                 = 2
+number_of_vpcs                = 1
+
+# Enable VPC Flow Logs for Security Assessments
+enable_flow_logs              = true
+
+# Project naming - prepends all resources with this name
+project_name                  = "username-paas-demo"
+
+# Tags to add to all resources
+tags = {
+  Environment = "demo"
+  Owner       = "username"
+  Department  = "Solution Engineering"
+  avxdemo     = "username-paas-demo"
+}
+
+
