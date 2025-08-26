@@ -1,6 +1,6 @@
 # Aviatrix Egress PaaS Demo Environment
 
- This code will deploy 1 or more VPCs in AWS with 2 Linux workloads in different AZs running Gatus
+ This Terraform will deploy 1 or more VPCs in AWS with 2 Linux workloads in different AZs running Gatus
 
  Before running, please note the following:
 
