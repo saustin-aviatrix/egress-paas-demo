@@ -13,5 +13,5 @@
  7. The code will output the loadbalancer URL for the 2 workloads. It's the same URL with port 80 and port 81
 
 
-# This TF was modified from Pauls SP1 Demo
+# This TF was modified from Pauls Original Demo
 ![Paul Aviatrix Template v2 - Page 10](https://github.com/user-attachments/assets/ad1ca413-cf3c-49bf-ae85-2444b0a7b575)
